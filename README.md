@@ -68,3 +68,5 @@ make clean       # 清理已安装的 skills
 ```
 
 安装后技能会根据触发关键词自动匹配执行。
+
+- [ai-delivery-spec](https://github.com/franklinxkk/ai-delivery-spec) — Spec-driven delivery framework for product managers — 4 delivery tiers, 0D triage, prototype testability, AI runtime governance, 5 domain modules
