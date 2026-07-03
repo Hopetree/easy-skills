@@ -41,11 +41,21 @@ pnpm dev:firefox
 ### 构建
 
 ```bash
+# 生成图标（首次或修改 icon.svg 后）
+pnpm generate-icons
+
 # 生产构建
 pnpm build
 
 # 打包为 .zip
 pnpm zip
+```
+
+### 图标
+
+```bash
+# 修改 public/icons/icon.svg 后重新生成 PNG
+pnpm generate-icons
 ```
 
 ### 代码质量
@@ -69,6 +79,14 @@ pnpm test         # 运行测试
 ## 项目结构
 
 ```
+public/
+│   └── icons/           # 插件图标
+│       ├── icon.svg     # 图标源文件（修改后运行 generate-icons）
+│       ├── icon-16.png
+│       ├── icon-48.png
+│       └── icon-128.png
+scripts/
+│   └── generate-icons.mjs  # SVG → PNG 图标生成脚本
 src/
 ├── entrypoints/       # WXT 入口
 │   ├── popup/         # Popup 页面

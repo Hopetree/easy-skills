@@ -11,6 +11,7 @@ export default defineConfig({
 
   // 输出目录
   outDir: 'dist',
+  outDirTemplate: '扩展包名',            // 构建子目录名，与 package.json name 一致
 
   // Manifest 配置
   manifest: {

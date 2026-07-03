@@ -103,23 +103,48 @@ cp -r <skill-dir>/assets/template/ <目标项目目录>/
 | `{{ICON_MODE}}` | `emoji` 或 `lucide` | "emoji" |
 
 **替换范围**：
-- `package.json` — `{{EXTENSION_NAME}}`、`{{PACKAGE_NAME}}`、`{{EXTENSION_VERSION}}`、`{{EXTENSION_DESCRIPTION}}`
-- `wxt.config.ts` — `{{EXTENSION_NAME}}`、`{{EXTENSION_DESCRIPTION}}`
-- `README.md` — `{{EXTENSION_NAME}}`、`{{EXTENSION_DESCRIPTION}}`
+- `package.json` — `{{PACKAGE_NAME}}`、`{{EXTENSION_VERSION}}`、`{{EXTENSION_DESCRIPTION}}`
+- `wxt.config.ts` — `{{EXTENSION_NAME}}`、`{{EXTENSION_DESCRIPTION}}`、`{{PACKAGE_NAME}}`
+- `README.md` — `{{EXTENSION_NAME}}`、`{{EXTENSION_DESCRIPTION}}`、`{{PACKAGE_NAME}}`、`{{ICON_MODE_CN}}`
+- `src/entrypoints/popup/App.tsx` — 根据 `{{ICON_MODE}}` 选择 emoji 或 Lucide 代码块
 - `.github/workflows/ci.yml` — 无需替换
 - `.github/workflows/release.yml` — 无需替换
 
 #### 4.3 图标方案处理
 
+**通用配置**（无论哪种图标方案都需要）：
+
+1. `package.json` 中添加 `sharp` 作为 devDependency 和 `generate-icons` 脚本：
+   ```json
+   "generate-icons": "node scripts/generate-icons.mjs"
+   ```
+
+2. `wxt.config.ts` 的 manifest 中显式声明 `icons` 字段：
+   ```ts
+   icons: {
+     16: 'icons/icon-16.png',
+     48: 'icons/icon-48.png',
+     128: 'icons/icon-128.png',
+   },
+   ```
+
+3. 模板中已包含 `scripts/generate-icons.mjs`，使用 `sharp` 从 `public/icons/icon.svg` 自动生成 16/48/128 三种 PNG。
+
 **Emoji 模式**：
 - 不安装 `lucide-react`
 - 从 `package.json` 移除 `lucide-react` 依赖
 - popup/options 等页面的 App.tsx 使用 emoji 作为图标占位符
+- 根据插件功能设计并替换 `public/icons/icon.svg`，然后运行 `generate-icons`
 
 **Lucide 模式**：
 - 保留 `lucide-react` 依赖
 - popup/options 等页面的 App.tsx 使用 Lucide 图标组件
 - 在 `globals.css` 中保留 Lucide 相关样式
+
+**图标设计原则**：
+- `icon.svg` 作为唯一源文件，修改后运行 `npm run generate-icons` 即可重新生成所有尺寸
+- 设计需简洁，确保 16x16 尺寸下仍可辨识
+- 使用纯色背景 + 高对比度前景元素，避免过多细节
 
 #### 4.4 安装依赖
 
@@ -172,9 +197,10 @@ pnpm exec husky init
 ✅ 项目已生成！
 
 ## 日常开发
-pnpm dev          # 启动开发模式（热重载）
-pnpm build        # 生产构建
-pnpm zip          # 打包为 .zip
+pnpm dev            # 启动开发模式（热重载）
+pnpm generate-icons # 修改 icon.svg 后重新生成 PNG
+pnpm build          # 生产构建
+pnpm zip            # 打包为 .zip
 
 ## 代码检查
 pnpm type-check   # TypeScript 类型检查
