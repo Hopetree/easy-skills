@@ -41,9 +41,6 @@ pnpm dev:firefox
 ### 构建
 
 ```bash
-# 生成图标（首次或修改 icon.svg 后）
-pnpm generate-icons
-
 # 生产构建
 pnpm build
 
@@ -53,10 +50,15 @@ pnpm zip
 
 ### 图标
 
+项目已包含根据插件功能自动生成的图标，无需额外配置。
+
+如需修改图标，编辑 `public/icons/icon.svg` 后运行：
+
 ```bash
-# 修改 public/icons/icon.svg 后重新生成 PNG
 pnpm generate-icons
 ```
+
+该脚本会自动生成 16×16、48×48、128×128 三种 PNG。
 
 ### 代码质量
 

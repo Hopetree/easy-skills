@@ -112,39 +112,15 @@ cp -r <skill-dir>/assets/template/ <目标项目目录>/
 
 #### 4.3 图标方案处理
 
-**通用配置**（无论哪种图标方案都需要）：
-
-1. `package.json` 中添加 `sharp` 作为 devDependency 和 `generate-icons` 脚本：
-   ```json
-   "generate-icons": "node scripts/generate-icons.mjs"
-   ```
-
-2. `wxt.config.ts` 的 manifest 中显式声明 `icons` 字段：
-   ```ts
-   icons: {
-     16: 'icons/icon-16.png',
-     48: 'icons/icon-48.png',
-     128: 'icons/icon-128.png',
-   },
-   ```
-
-3. 模板中已包含 `scripts/generate-icons.mjs`，使用 `sharp` 从 `public/icons/icon.svg` 自动生成 16/48/128 三种 PNG。
+根据第二阶段确认的图标方案执行：
 
 **Emoji 模式**：
-- 不安装 `lucide-react`
 - 从 `package.json` 移除 `lucide-react` 依赖
-- popup/options 等页面的 App.tsx 使用 emoji 作为图标占位符
-- 根据插件功能设计并替换 `public/icons/icon.svg`，然后运行 `generate-icons`
+- `App.tsx` 保留 emoji 代码块（删除 Lucide 代码块）
 
 **Lucide 模式**：
 - 保留 `lucide-react` 依赖
-- popup/options 等页面的 App.tsx 使用 Lucide 图标组件
-- 在 `globals.css` 中保留 Lucide 相关样式
-
-**图标设计原则**：
-- `icon.svg` 作为唯一源文件，修改后运行 `npm run generate-icons` 即可重新生成所有尺寸
-- 设计需简洁，确保 16x16 尺寸下仍可辨识
-- 使用纯色背景 + 高对比度前景元素，避免过多细节
+- `App.tsx` 保留 Lucide 代码块（删除 emoji 代码块）
 
 #### 4.4 安装依赖
 
@@ -153,7 +129,26 @@ cd <目标项目目录>
 pnpm install
 ```
 
-#### 4.5 初始化 Git
+#### 4.5 自动生成扩展图标
+
+**此步骤由 skill 自动完成，无需用户操作。**
+
+根据插件功能描述，自动设计和生成扩展图标：
+
+1. **设计 `icon.svg`**：根据插件名称和功能描述，设计一个简洁的 SVG 图标，覆盖 `public/icons/icon.svg`
+   - 纯色背景 + 高对比前景元素
+   - 确保在 16×16 尺寸下仍可辨识
+   - 避免过多细节
+   - SVG 尺寸为 128×128，使用圆角矩形背景
+
+2. **生成 PNG**：运行 `generate-icons` 脚本自动生成 16/48/128 三种尺寸
+
+   ```bash
+   cd <目标项目目录>
+   node scripts/generate-icons.mjs
+   ```
+
+#### 4.6 初始化 Git
 
 ```bash
 cd <目标项目目录>
@@ -165,7 +160,7 @@ git commit -m "chore(init): 初始化浏览器插件项目 {{EXTENSION_NAME}}
 图标方案: {{ICON_MODE}}"
 ```
 
-#### 4.6 初始化 Husky
+#### 4.7 初始化 Husky
 
 ```bash
 cd <目标项目目录>
@@ -197,16 +192,18 @@ pnpm exec husky init
 ✅ 项目已生成！
 
 ## 日常开发
-pnpm dev            # 启动开发模式（热重载）
-pnpm generate-icons # 修改 icon.svg 后重新生成 PNG
-pnpm build          # 生产构建
-pnpm zip            # 打包为 .zip
+pnpm dev          # 启动开发模式（热重载）
+pnpm build        # 生产构建
+pnpm zip          # 打包为 .zip
 
 ## 代码检查
 pnpm type-check   # TypeScript 类型检查
 pnpm lint         # ESLint 检查
 pnpm format       # Prettier 自动格式化
 pnpm test         # 运行测试
+
+## 更新图标
+pnpm generate-icons  # 修改 public/icons/icon.svg 后重新生成 PNG
 
 ## 发布新版本
 1. git checkout main && git pull
