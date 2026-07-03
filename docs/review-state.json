@@ -1,8 +1,8 @@
 {
-  "last_reviewed_commit": null,
-  "last_reviewed_commit_short": null,
-  "last_review_date": null,
-  "last_review_summary": null,
+  "last_reviewed_commit": "c38b27bed0b658783aa4d0714f2baae2aa52da73",
+  "last_reviewed_commit_short": "c38b27b",
+  "last_review_date": "2026-07-03",
+  "last_review_summary": "审查 docs/skills/ 目录下 4 个 Skill 介绍文档及注册表的新增，未发现问题",
   "documents_updated": [],
   "documents": [
     {
