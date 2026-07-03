@@ -3,6 +3,7 @@ import { defineConfig } from 'wxt';
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   outDir: 'dist',
+  outDirTemplate: '{{PACKAGE_NAME}}',
   modules: ['@wxt-dev/module-react'],
   manifest: {
     name: '{{EXTENSION_NAME}}',
