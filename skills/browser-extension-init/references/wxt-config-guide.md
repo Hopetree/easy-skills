@@ -10,7 +10,7 @@ export default defineConfig({
   modules: ['@wxt-dev/module-react'],
 
   // 输出目录
-  outDir: '.output',
+  outDir: 'dist',
 
   // Manifest 配置
   manifest: {

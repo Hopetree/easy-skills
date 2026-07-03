@@ -192,7 +192,7 @@ pnpm test         # 运行测试
 1. 打开 chrome://extensions/
 2. 开启「开发者模式」
 3. 点击「加载已解压的扩展程序」
-4. 选择项目的 .output/chrome-mv3 目录（开发模式）
+4. 选择项目的 dist/chrome-mv3 目录（开发模式）
 ```
 
 ---

@@ -36,7 +36,7 @@ export default tseslint.config(
   {
     ignores: [
       'node_modules/',
-      '.output/',
+      'dist/',
       'dist/',
       '.wxt/',
       '*.config.*',
