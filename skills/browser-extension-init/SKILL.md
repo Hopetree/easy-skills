@@ -126,7 +126,7 @@ cp -r <skill-dir>/assets/template/ <目标项目目录>/
 
 ```bash
 cd <目标项目目录>
-pnpm install
+npm install
 ```
 
 #### 4.5 自动生成扩展图标
@@ -164,7 +164,7 @@ git commit -m "chore(init): 初始化浏览器插件项目 {{EXTENSION_NAME}}
 
 ```bash
 cd <目标项目目录>
-pnpm exec husky init
+npx husky init
 ```
 
 ---
@@ -192,18 +192,18 @@ pnpm exec husky init
 ✅ 项目已生成！
 
 ## 日常开发
-pnpm dev          # 启动开发模式（热重载）
-pnpm build        # 生产构建
-pnpm zip          # 打包为 .zip
+npm run dev            # 启动开发模式（热重载）
+npm run build          # 生产构建
+npm run zip            # 打包为 .zip
 
 ## 代码检查
-pnpm type-check   # TypeScript 类型检查
-pnpm lint         # ESLint 检查
-pnpm format       # Prettier 自动格式化
-pnpm test         # 运行测试
+npm run type-check     # TypeScript 类型检查
+npm run lint           # ESLint 检查
+npm run format         # Prettier 自动格式化
+npm run test           # 运行测试
 
 ## 更新图标
-pnpm generate-icons  # 修改 public/icons/icon.svg 后重新生成 PNG
+npm run generate-icons # 修改 public/icons/icon.svg 后重新生成 PNG
 
 ## 发布新版本
 1. git checkout main && git pull
@@ -225,12 +225,12 @@ pnpm generate-icons  # 修改 public/icons/icon.svg 后重新生成 PNG
 项目创建后如需切换图标方案，按以下步骤操作：
 
 **从 Emoji 切换到 Lucide**：
-1. `pnpm add lucide-react`
+1. `npm install lucide-react`
 2. 将各页面中的 emoji 替换为对应的 Lucide `<Icon>` 组件
 3. 确保 emoji 图标和 Lucide 图标不同时存在
 
 **从 Lucide 切换到 Emoji**：
-1. `pnpm remove lucide-react`
+1. `npm uninstall lucide-react`
 2. 移除各页面中 `import { X } from 'lucide-react'` 的引用
 3. 将 `<XIcon />` 替换为对应的 emoji 字符
 4. 清理导入语句

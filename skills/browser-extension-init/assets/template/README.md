@@ -16,19 +16,18 @@
 ### 环境要求
 
 - Node.js >= 20
-- pnpm >= 9
 
 ### 开发
 
 ```bash
 # 安装依赖
-pnpm install
+npm install
 
 # 启动开发模式（Chrome）
-pnpm dev
+npm run dev
 
 # 启动开发模式（Firefox）
-pnpm dev:firefox
+npm run dev:firefox
 ```
 
 ### 加载扩展
@@ -42,10 +41,10 @@ pnpm dev:firefox
 
 ```bash
 # 生产构建
-pnpm build
+npm run build
 
 # 打包为 .zip
-pnpm zip
+npm run zip
 ```
 
 ### 图标
@@ -55,7 +54,7 @@ pnpm zip
 如需修改图标，编辑 `public/icons/icon.svg` 后运行：
 
 ```bash
-pnpm generate-icons
+npm run generate-icons
 ```
 
 该脚本会自动生成 16×16、48×48、128×128 三种 PNG。
@@ -63,10 +62,10 @@ pnpm generate-icons
 ### 代码质量
 
 ```bash
-pnpm type-check   # TypeScript 类型检查
-pnpm lint         # ESLint 检查
-pnpm format       # Prettier 格式化
-pnpm test         # 运行测试
+npm run type-check   # TypeScript 类型检查
+npm run lint         # ESLint 检查
+npm run format       # Prettier 格式化
+npm run test         # 运行测试
 ```
 
 ### 发布新版本

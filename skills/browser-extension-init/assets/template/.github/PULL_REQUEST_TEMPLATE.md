@@ -26,8 +26,8 @@
 
 ## 检查清单
 
-- [ ] 代码通过 `pnpm type-check`
-- [ ] 代码通过 `pnpm lint`
-- [ ] 代码通过 `pnpm test`
+- [ ] 代码通过 `npm run type-check`
+- [ ] 代码通过 `npm run lint`
+- [ ] 代码通过 `npm run test`
 - [ ] 已在浏览器中手动测试功能
 - [ ] 已更新相关文档
